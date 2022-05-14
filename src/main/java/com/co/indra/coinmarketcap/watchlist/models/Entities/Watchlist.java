@@ -5,13 +5,12 @@ public class Watchlist {
     private int idWatchlist;
     private String username;
     private String nameWatchlist;
-    private boolean visibility;
+    private String visibility;
 
     public Watchlist(){
     }
 
-    public Watchlist(int idWatchlist, String username, String nameWatchlist, boolean visibility) {
-        this.idWatchlist = idWatchlist;
+    public Watchlist(int idWatchlist, String username, String nameWatchlist, String visibility) {
         this.username = username;
         this.nameWatchlist = nameWatchlist;
         this.visibility = visibility;
@@ -41,11 +40,11 @@ public class Watchlist {
         this.nameWatchlist = nameWatchlist;
     }
 
-    public boolean isVisibility() {
+    public String isVisibility() {
         return visibility;
     }
 
-    public void setVisibility(boolean visibility) {
+    public void setVisibility(String visibility) {
         this.visibility = visibility;
     }
 }

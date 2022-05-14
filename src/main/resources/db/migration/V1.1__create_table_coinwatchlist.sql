@@ -1,6 +1,6 @@
 create table public.tbl_coinWatchlist (
     id serial primary key,
-    idSymbolCoin varchar(25) NOT NULL,
-    idWatchlist int NOT NULL,
-    foreign key(idWatchlist) references tbl_watchlist(idWatchlist)
+    id_symbolCoin varchar(25) NOT NULL,
+    id_watchlist int NOT NULL,
+    foreign key(id_watchlist) references tbl_watchlist(id_watchlist)
 )

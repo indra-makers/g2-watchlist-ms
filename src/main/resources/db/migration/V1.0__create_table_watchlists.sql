@@ -1,6 +1,6 @@
 create table public.tbl_watchlist (
-    idWatchlist serial primary key,
+    id_watchlist serial primary key,
     username varchar(25) NOT NULL,
-    nameWatchlist varchar(25) NOT NULL,
-    visibility bit
+    name_watchlist varchar(25),
+    visibility varchar(25) NOT NULL
 )
