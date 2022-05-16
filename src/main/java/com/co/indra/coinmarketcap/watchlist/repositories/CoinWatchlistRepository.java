@@ -32,7 +32,7 @@ public class CoinWatchlistRepository {
                 coinWatchlist.getIdSymbolCoin(), coinWatchlist.getIdWatchlist());
     }
 
-    public List<CoinWatchlist> findBy(String username) {
+    public List<CoinWatchlist> findByUsernameAnd(String username) {
         return jdbcTemplate.query(
                 "SELECT id_watchlist, username, name_watchlist, visibility FROM tbl_watchlist WHERE username=?",
                 new CoinWatchlistRowMapper(),

@@ -3,12 +3,10 @@ package com.co.indra.coinmarketcap.watchlist.controllers;
 import com.co.indra.coinmarketcap.watchlist.models.Entities.Watchlist;
 import com.co.indra.coinmarketcap.watchlist.services.WatchlistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/watchlists")
@@ -25,5 +23,15 @@ public class WatchlistController {
     @PostMapping
     public void create(@Valid @RequestBody Watchlist watchlist){
         watchlistService.createWatchlist(watchlist);
+    }
+
+    /**
+     *   GET /watchlist?username={{username}},
+     * @param username
+     * @return
+     */
+    @GetMapping
+    public List<Watchlist> getWatchlistByUsername(@RequestParam(name = "username") String username) {
+        return watchlistService.getWatchlistByUsername(username);
     }
 }

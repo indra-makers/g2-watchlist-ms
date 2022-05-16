@@ -34,11 +34,18 @@ public class WatchlistRepository {
                 watchlist.getUsername(), watchlist.getNameWatchlist(), watchlist.isVisibility());
     }
 
-    public List<Watchlist> findByUsernameAndName(String username, String nameWatchlist) {
+    public List<Watchlist> findByUsernameAndName(String username, String name_watchlist) {
         return jdbcTemplate.query(
                 "SELECT id_watchlist, username, name_watchlist, visibility FROM tbl_watchlist WHERE username=? and name_watchlist=?",
                 new WatchlistRowMapper(),
-                username, nameWatchlist);
+                username, name_watchlist);
+    }
+
+    public List<Watchlist> findByUsername(String username) {
+        return jdbcTemplate.query(
+                "SELECT id_watchlist, username, name_watchlist, visibility FROM tbl_watchlist WHERE username=?",
+                new WatchlistRowMapper(),
+                username);
     }
 
 }

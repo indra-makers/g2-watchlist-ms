@@ -15,12 +15,15 @@ public class WatchlistService {
     private WatchlistRepository watchlistRepository;
 
     public void createWatchlist(Watchlist watchlist){
-        if(watchlistRepository.findByUsernameAndName(watchlist.getUsername(), watchlist.getNameWatchlist()).size()==0){
+//        if(watchlistRepository.findByUsernameAndName(watchlist.getUsername(), watchlist.getNameWatchlist()).size()==0){
             watchlistRepository.create(watchlist);
-        }else{
+        /*}else{
             throw new BussinessException("Name of the Watchlist already exist","001");
-        }
+        }*/
     }
 
+    public List<Watchlist> getWatchlistByUsername(String username) {
+        return watchlistRepository.findByUsername(username);
+    }
 
 }
