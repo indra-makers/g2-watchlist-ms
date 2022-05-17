@@ -42,24 +42,25 @@ public class CoinWatchlistControllerTest {
     private JdbcTemplate jdbcTemplate;
 
     @Test
+    @Sql("/testdata/get_watchlist.sql")
     public void createCoinWatchlistHappyPath() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post(Routes.WATCHLIST_PATH+Routes.COIN_WATCHLIST_PATH)
                 .content("{\n" +
                         "    \"idSymbolCoin\": \"NFT\",\n" +
-                        "    \"idWatchlist\": \"3\"\n" +
+                        "    \"idWatchlist\": \"30\"\n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
         Assertions.assertEquals(200, response.getStatus());
 
-        List<CoinWatchlist> coinWatchlists = coinWatchlistRepository.findByUsernameAndSimboly(3,"NFT");
+        List<CoinWatchlist> coinWatchlists = coinWatchlistRepository.findByUsernameAndSimboly(30,"NFT");
         Assertions.assertEquals(1, coinWatchlists.size());
 
         CoinWatchlist coinWatchlistToAssert = coinWatchlists.get(0);
 
         Assertions.assertEquals("NFT", coinWatchlistToAssert.getIdSymbolCoin());
-        Assertions.assertEquals(3, coinWatchlistToAssert.getIdWatchlist());
+        Assertions.assertEquals(30, coinWatchlistToAssert.getIdWatchlist());
     }
 
     @Test
