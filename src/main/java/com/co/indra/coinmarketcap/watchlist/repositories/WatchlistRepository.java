@@ -48,4 +48,12 @@ public class WatchlistRepository {
                 username);
     }
 
+    public List<Watchlist> findByIdWatchlist(int idWatchlist) {
+        return jdbcTemplate.query(
+                "SELECT id_watchlist, username, name_watchlist, visibility FROM tbl_watchlist WHERE id_watchlist=?",
+                new WatchlistRowMapper(),
+                idWatchlist);
+    }
+
+
 }

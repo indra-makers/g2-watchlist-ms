@@ -7,6 +7,4 @@ public class Routes {
     public static  final String COIN_WATCHLIST_PATH = "/coins";
 
     public static  final String COIN= "/d";
-
-
 }
