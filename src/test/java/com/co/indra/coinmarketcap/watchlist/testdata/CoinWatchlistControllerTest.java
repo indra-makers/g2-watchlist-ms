@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -62,16 +63,17 @@ public class CoinWatchlistControllerTest {
     }
 
     @Test
+    @Sql("/testdata/get_watchlist.sql")
     public void createCoinWatchlistWitchAlreadyCoinNameExist() throws Exception {
         //----la preparacion de los datos de prueba-------
-        coinWatchlistRepository.create(new CoinWatchlist( "NFT-test", 2));
+        coinWatchlistRepository.create(new CoinWatchlist( "NFT-test", 30));
 
         //----la ejecucion de la prueba misma--------------
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post(Routes.WATCHLIST_PATH+Routes.COIN_WATCHLIST_PATH)
                 .content("{\n" +
                         "    \"idSymbolCoin\": \"NFT-test\",\n" +
-                        "    \"idWatchlist\": \"2\"\n" +
+                        "    \"idWatchlist\": \"30\"\n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
