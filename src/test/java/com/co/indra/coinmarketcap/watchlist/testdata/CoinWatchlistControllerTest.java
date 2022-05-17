@@ -127,7 +127,7 @@ public class CoinWatchlistControllerTest {
     @Sql("/testdata/get_watchlist.sql")
     public void deleteWatchlistIdSymbolCoinBadPath() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .delete("/watchlist/coins/1/BTN/3/")
+                .delete("/watchlist/coins/1/BTN/30/")
                 .contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
