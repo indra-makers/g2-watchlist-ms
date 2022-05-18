@@ -1,2 +1,2 @@
-INSERT INTO public.tbl_watchlist (id_watchlist,username, name_watchlist,visibility) VALUES(31,'Username','namwW','true');
-INSERT INTO public.tbl_coinWatchlist (id_watchlist,id_symbolcoin) VALUES(31,'BTC');
+INSERT INTO public.tbl_watchlist (id_watchlist,username, name_watchlist,visibility) VALUES(30,'Username','namwW','true');
+INSERT INTO public.tbl_coinWatchlist (id_watchlist,id_symbolcoin) VALUES(30,'BTC');
