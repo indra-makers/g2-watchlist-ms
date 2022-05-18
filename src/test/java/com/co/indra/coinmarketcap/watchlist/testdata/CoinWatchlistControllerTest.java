@@ -111,7 +111,7 @@ public class CoinWatchlistControllerTest {
         String textREsponse = response.getContentAsString();
         ErrorResponse error = objectMapper.readValue(textREsponse, ErrorResponse.class);
 
-        Assertions.assertEquals("NOT_FOUND", error.getCode());
+        Assertions.assertEquals("404", error.getCode());
         Assertions.assertEquals("Watchlist with that id not exists", error.getMessage());
     }
 
@@ -125,7 +125,7 @@ public class CoinWatchlistControllerTest {
         String textREsponse = response.getContentAsString();
         ErrorResponse error = objectMapper.readValue(textREsponse, ErrorResponse.class);
 
-        Assertions.assertEquals("NOT_FOUND", error.getCode());
+        Assertions.assertEquals("404", error.getCode());
         Assertions.assertEquals("Watchlist with that symbol coin not exists", error.getMessage());
     }
 
