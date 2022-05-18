@@ -1,6 +1,7 @@
 package com.co.indra.coinmarketcap.watchlist.repositories;
 
 import com.co.indra.coinmarketcap.watchlist.models.Entities.CoinWatchlist;
+import com.co.indra.coinmarketcap.watchlist.models.Entities.Watchlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -38,5 +39,28 @@ public class CoinWatchlistRepository {
                 new CoinWatchlistRowMapper(),
                 simbolyCoin, idWatchlist);
     }
+
+    public List<CoinWatchlist> findByIdWatchlist(int idWatchlist) {
+        return jdbcTemplate.query(
+                "SELECT id, id_symbolcoin, id_watchlist FROM tbl_coinwatchlist WHERE id_watchlist=?",
+                new CoinWatchlistRowMapper(),
+                idWatchlist);
+    }
+
+    public List<CoinWatchlist> findByIdSymbolCoin(String symbolCoin, int idWatchlist) {
+        return jdbcTemplate.query(
+                "SELECT id, id_symbolcoin, id_watchlist FROM tbl_coinwatchlist WHERE id_symbolcoin=? AND id_watchlist=?",
+                new CoinWatchlistRowMapper(),
+                symbolCoin, idWatchlist);
+    }
+
+    public void deleteCoinWatchlist(String symbolCoin, int idWatchlist ) {
+
+        jdbcTemplate.update(
+                "DELETE  FROM tbl_coinwatchlist WHERE id_symbolcoin=? AND id_watchlist=?",
+                symbolCoin, idWatchlist );
+    }
+
+
 
 }

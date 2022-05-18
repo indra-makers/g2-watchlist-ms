@@ -1,8 +1,10 @@
 package com.co.indra.coinmarketcap.watchlist.testdata;
 
 import com.co.indra.coinmarketcap.watchlist.Config.Routes;
+import com.co.indra.coinmarketcap.watchlist.models.Entities.CoinWatchlist;
 import com.co.indra.coinmarketcap.watchlist.models.Entities.Watchlist;
 import com.co.indra.coinmarketcap.watchlist.models.Response.ErrorResponse;
+import com.co.indra.coinmarketcap.watchlist.repositories.CoinWatchlistRepository;
 import com.co.indra.coinmarketcap.watchlist.repositories.WatchlistRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -13,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,6 +33,9 @@ public class WatchlistControllerTest {
 
     @Autowired
     private WatchlistRepository watchlistRepository;
+
+    @Autowired
+    private CoinWatchlistRepository coinWatchlistRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -87,6 +93,5 @@ public class WatchlistControllerTest {
         Assertions.assertEquals("001", error.getCode());
         Assertions.assertEquals("Name of the Watchlist already exist", error.getMessage());
     }
-
 
 }

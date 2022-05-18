@@ -35,4 +35,6 @@ public class WatchlistController {
     public List<Watchlist> getWatchlistByUsername(@RequestParam(name = "username") String username) {
         return watchlistService.getWatchlistByUsername(username);
     }
+
+
 }

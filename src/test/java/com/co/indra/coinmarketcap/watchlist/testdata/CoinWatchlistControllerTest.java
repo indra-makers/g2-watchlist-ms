@@ -91,4 +91,43 @@ public class CoinWatchlistControllerTest {
         Assertions.assertEquals("Name of coin in watchlist already exists", error.getMessage());
     }
 
+    @Test
+    @Sql("/testdata/get_watchlistcoin.sql")
+    public void deleteCoinWatchlistHappyPath() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.delete(Routes.WATCHLIST_PATH +Routes.COIN_WATCHLIST_PATH + Routes.ID_WATCHLIST_PATH + Routes.ID_SYMBOLCOIN_PATH, 30, "BTC");
+
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+        // ------------ las verificaciones--------------------
+        Assertions.assertEquals(200, response.getStatus());
+
+    }
+    @Test
+    @Sql("/testdata/get_watchlistcoin.sql")
+    public void deleteCoinWatchlistIdWatchlistNotExist() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.delete(Routes.WATCHLIST_PATH +Routes.COIN_WATCHLIST_PATH + Routes.ID_WATCHLIST_PATH + Routes.ID_SYMBOLCOIN_PATH, 31, "BTC");
+
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+        Assertions.assertEquals(404, response.getStatus());
+        String textREsponse = response.getContentAsString();
+        ErrorResponse error = objectMapper.readValue(textREsponse, ErrorResponse.class);
+
+        Assertions.assertEquals("NOT_FOUND", error.getCode());
+        Assertions.assertEquals("Watchlist with that id not exists", error.getMessage());
+    }
+
+    @Test
+    @Sql("/testdata/get_watchlistcoin.sql")
+    public void deleteCoinWatchlistWatchlistCoinNotExist() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.delete(Routes.WATCHLIST_PATH +Routes.COIN_WATCHLIST_PATH + Routes.ID_WATCHLIST_PATH + Routes.ID_SYMBOLCOIN_PATH, 30, "BTZ");
+
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+        Assertions.assertEquals(404, response.getStatus());
+        String textREsponse = response.getContentAsString();
+        ErrorResponse error = objectMapper.readValue(textREsponse, ErrorResponse.class);
+
+        Assertions.assertEquals("NOT_FOUND", error.getCode());
+        Assertions.assertEquals("Watchlist with that symbol coin not exists", error.getMessage());
+    }
+
+
 }
