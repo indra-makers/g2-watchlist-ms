@@ -1,5 +1,6 @@
 package com.co.indra.coinmarketcap.watchlist.repositories;
 
+import com.co.indra.coinmarketcap.watchlist.models.Entities.CoinWatchlist;
 import com.co.indra.coinmarketcap.watchlist.models.Entities.Watchlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -55,5 +56,11 @@ public class WatchlistRepository {
                 idWatchlist);
     }
 
+    public void deleteWatchlist(int idWatchlist) {
+
+        jdbcTemplate.update(
+                "DELETE  FROM tbl_watchlist WHERE id_watchlist=?",
+                idWatchlist );
+    }
 
 }

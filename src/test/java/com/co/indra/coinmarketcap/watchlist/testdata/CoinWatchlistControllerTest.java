@@ -93,18 +93,6 @@ public class CoinWatchlistControllerTest {
 
     @Test
     @Sql("/testdata/get_watchlist.sql")
-    public void deleteCoinWatchlistHappyPath() throws Exception {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .delete("/watchlist/coins/1/2/30/")
-                .contentType(MediaType.APPLICATION_JSON);
-
-        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
-        Assertions.assertEquals(200, response.getStatus());
-
-    }
-
-    @Test
-    @Sql("/testdata/get_watchlist.sql")
     public void deleteWatchlistIdWatchlistBadPath() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .delete("/watchlist/coins/1/2/1/")
@@ -127,7 +115,7 @@ public class CoinWatchlistControllerTest {
     @Sql("/testdata/get_watchlist.sql")
     public void deleteWatchlistIdSymbolCoinBadPath() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .delete("/watchlist/coins/1/BTN/30/")
+                .delete("/watchlist/coins/1/BTN/3/")
                 .contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();

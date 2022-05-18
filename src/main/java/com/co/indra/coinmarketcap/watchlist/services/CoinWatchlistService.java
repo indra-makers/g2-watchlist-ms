@@ -17,9 +17,6 @@ public class CoinWatchlistService {
     @Autowired
     private CoinWatchlistRepository coinWatchlistRepository;
 
-    @Autowired
-    private WatchlistRepository watchlistRepository;
-
     public void createCoinWatchlist(CoinWatchlist coinWatchlist){
         if(coinWatchlistRepository.findByUsernameAndSimboly(coinWatchlist.getIdWatchlist(), coinWatchlist.getIdSymbolCoin()).size()==0){
             coinWatchlistRepository.create(coinWatchlist);
@@ -28,20 +25,5 @@ public class CoinWatchlistService {
         }
     }
 
-    /**
-     * Delete watchlist
-     * na watchlist with repeated idWatchlist.
-     * @param id, idSymbolCoin,idWatchlist
-     */
-    public void deleteWatchlist(int id, String idSymbolCoin, int idWatchlist ) {
 
-        if(watchlistRepository.findByIdWatchlist(idWatchlist).size()==0){
-            throw new NotFoundException(ErrorCodes.WATCHLIST_WITH_ID_NOT_EXISTS.getMessage());
-        }else if(idSymbolCoin.equals("BTN")){
-            throw new NotFoundException(ErrorCodes.WATCHLIST_WITH_SYMBOL_COIN_NOT_EXISTS.getMessage());
-        }else{
-           coinWatchlistRepository.deleteWatchlist(id);
-
-        }
-    }
 }
