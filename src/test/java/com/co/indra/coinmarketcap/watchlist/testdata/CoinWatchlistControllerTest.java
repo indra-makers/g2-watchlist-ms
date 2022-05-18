@@ -64,7 +64,6 @@ public class CoinWatchlistControllerTest {
     }
 
     @Test
-    @Sql("/testdata/get_watchlist.sql")
     public void createCoinWatchlistWitchAlreadyCoinNameExist() throws Exception {
         //----la preparacion de los datos de prueba-------
         coinWatchlistRepository.create(new CoinWatchlist( "NFT-test", 30));
@@ -91,5 +90,4 @@ public class CoinWatchlistControllerTest {
         Assertions.assertEquals("Name of coin in watchlist already exists", error.getMessage());
     }
 
-    
 }
