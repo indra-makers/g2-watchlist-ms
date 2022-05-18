@@ -25,5 +25,22 @@ public class CoinWatchlistService {
         }
     }
 
+    /**
+     * Delete watchlist
+     * na watchlist with repeated idWatchlist.
+     * @param idSymbolCoin,idWatchlist
+     */
+    public void deleteCoinWatchlist( String idSymbolCoin, int idWatchlist ) {
+
+        if(coinWatchlistRepository.findByIdWatchlist(idWatchlist).isEmpty()){
+            throw new NotFoundException(ErrorCodes.WATCHLIST_WITH_ID_NOT_EXISTS.getMessage());
+        }
+        if(coinWatchlistRepository.findByIdSymbolCoin(idSymbolCoin, idWatchlist).isEmpty()){
+            throw new NotFoundException(ErrorCodes.WATCHLIST_WITH_SYMBOL_COIN_NOT_EXISTS.getMessage());
+        }
+        coinWatchlistRepository.deleteCoinWatchlist(idSymbolCoin, idWatchlist);
+
+    }
+
 
 }

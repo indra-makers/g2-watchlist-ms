@@ -32,21 +32,4 @@ public class WatchlistService {
         return watchlistRepository.findByUsername(username);
     }
 
-    /**
-     * Delete watchlist
-     * na watchlist with repeated idWatchlist.
-     * @param idSymbolCoin,idWatchlist
-     */
-    public void deleteWatchlist( String idSymbolCoin, int idWatchlist ) {
-
-        if(watchlistRepository.findByIdWatchlist(idWatchlist).isEmpty()){
-            throw new NotFoundException(ErrorCodes.WATCHLIST_WITH_ID_NOT_EXISTS.getMessage());
-        }else if(coinWatchlistRepository.findByIdSymbolCoin(idSymbolCoin, idWatchlist).isEmpty()){
-            throw new NotFoundException(ErrorCodes.WATCHLIST_WITH_SYMBOL_COIN_NOT_EXISTS.getMessage());
-        }else{
-           coinWatchlistRepository.deleteCoinWatchlist(idSymbolCoin, idWatchlist);
-           watchlistRepository.deleteWatchlist(idWatchlist);
-        }
-    }
-
 }

@@ -40,6 +40,13 @@ public class CoinWatchlistRepository {
                 simbolyCoin, idWatchlist);
     }
 
+    public List<CoinWatchlist> findByIdWatchlist(int idWatchlist) {
+        return jdbcTemplate.query(
+                "SELECT id, id_symbolcoin, id_watchlist FROM tbl_coinwatchlist WHERE id_watchlist=?",
+                new CoinWatchlistRowMapper(),
+                idWatchlist);
+    }
+
     public List<CoinWatchlist> findByIdSymbolCoin(String symbolCoin, int idWatchlist) {
         return jdbcTemplate.query(
                 "SELECT id, id_symbolcoin, id_watchlist FROM tbl_coinwatchlist WHERE id_symbolcoin=? AND id_watchlist=?",

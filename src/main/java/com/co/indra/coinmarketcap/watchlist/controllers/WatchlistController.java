@@ -36,13 +36,5 @@ public class WatchlistController {
         return watchlistService.getWatchlistByUsername(username);
     }
 
-    /**
-     * URL /watchlist/coins/
-     * @param idWatchlist
-     * @param idSymbolCoin
-     */
-    @DeleteMapping("/{id_watchlist}/coins/{id_symbolCoin}")
-    public void delete( @PathVariable("id_symbolCoin") String idSymbolCoin, @PathVariable("id_watchlist") int idWatchlist) {
-        watchlistService.deleteWatchlist(idSymbolCoin,idWatchlist);
-    }
+
 }

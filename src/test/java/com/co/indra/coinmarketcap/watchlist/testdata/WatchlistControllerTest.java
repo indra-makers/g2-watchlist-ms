@@ -94,47 +94,4 @@ public class WatchlistControllerTest {
         Assertions.assertEquals("Name of the Watchlist already exist", error.getMessage());
     }
 
-
-    /**@Test
-    @Sql("/testdata/get_watchlist.sql")
-    public void deleteCoinWatchlistHappyPath() throws Exception {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .delete("/31/coins?BTC")
-                .contentType(MediaType.APPLICATION_JSON);
-
-        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
-        Assertions.assertEquals(200, response.getStatus());
-
-    }**/
-    @Test
-    @Sql("/testdata/get_watchlistcoin.sql")
-    public void deleteWatchlistIdWatchlistBadPath() throws Exception {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .delete("/33/coins/BTC")
-                .contentType(MediaType.APPLICATION_JSON);
-
-        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
-        Assertions.assertEquals(404, response.getStatus());
-
-        List<Object[]> resulst = jdbcTemplate.query("SELECT id_watchlist, username, name_watchlist, visibility FROM tbl_watchlist WHERE id_watchlist=?",
-                (rs, rn) -> {
-                    return new Object[] {rs.getObject("id_watchlist")};
-                },
-                2000);
-
-        Assertions.assertEquals(0, resulst.size());
-
-    }
-
-    @Test
-    @Sql("/testdata/get_watchlistcoin.sql")
-    public void deleteWatchlistCoinBadPath() throws Exception {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .delete("/30/coins/BTA")
-                .contentType(MediaType.APPLICATION_JSON);
-
-        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
-        Assertions.assertEquals(404, response.getStatus());
-    }
-
 }
