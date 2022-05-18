@@ -103,7 +103,7 @@ public class CoinWatchlistControllerTest {
     }
     @Test
     @Sql("/testdata/get_watchlistcoin.sql")
-    public void deleteWatchlistIdWatchlistNotExist() throws Exception {
+    public void deleteCoinWatchlistIdWatchlistNotExist() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.delete(Routes.WATCHLIST_PATH +Routes.COIN_WATCHLIST_PATH + Routes.ID_WATCHLIST_PATH + Routes.ID_SYMBOLCOIN_PATH, 31, "BTC");
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
@@ -117,7 +117,7 @@ public class CoinWatchlistControllerTest {
 
     @Test
     @Sql("/testdata/get_watchlistcoin.sql")
-    public void deleteWatchlistWatchlistCoinNotExist() throws Exception {
+    public void deleteCoinWatchlistWatchlistCoinNotExist() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.delete(Routes.WATCHLIST_PATH +Routes.COIN_WATCHLIST_PATH + Routes.ID_WATCHLIST_PATH + Routes.ID_SYMBOLCOIN_PATH, 30, "BTZ");
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
