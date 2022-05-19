@@ -67,13 +67,13 @@ public class CoinWatchlistControllerTest {
     @Sql("/testdata/get_watchlist.sql")
     public void createCoinWatchlistWitchAlreadyCoinNameExist() throws Exception {
         //----la preparacion de los datos de prueba-------
-        coinWatchlistRepository.create(new CoinWatchlist( "NFT-test", 30));
+        coinWatchlistRepository.create(new CoinWatchlist( "NFT", 30));
 
         //----la ejecucion de la prueba misma--------------
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post(Routes.WATCHLIST_PATH+Routes.COIN_WATCHLIST_PATH)
                 .content("{\n" +
-                        "    \"idSymbolCoin\": \"NFT-test\",\n" +
+                        "    \"idSymbolCoin\": \"NFT\",\n" +
                         "    \"idWatchlist\": \"30\"\n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
 
