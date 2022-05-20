@@ -29,6 +29,9 @@ public class WatchlistService {
     }
 
     public List<Watchlist> getWatchlistByUsername(String username) {
+        if(watchlistRepository.findByUsername(username).isEmpty()){
+            throw new NotFoundException(ErrorCodes.WATCHLIST_USER_DOESNOT_EXISTS.getMessage());
+        }
         return watchlistRepository.findByUsername(username);
     }
 
