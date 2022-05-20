@@ -94,4 +94,32 @@ public class WatchlistControllerTest {
         Assertions.assertEquals("Name of the Watchlist already exist", error.getMessage());
     }
 
+    @Test
+    @Sql("/testdata/get_watchlist.sql")
+    public void getWatchlistByUsername() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .get(Routes.WATCHLIST_PATH+"?username=Username").contentType(
+                        MediaType.APPLICATION_JSON
+                );
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+        Assertions.assertEquals(200,response.getStatus());
+        Watchlist[] watchlist = objectMapper.readValue(response.getContentAsString(),Watchlist[].class);
+        Assertions.assertEquals(1,watchlist.length);
+    }
+
+    @Test
+    @Sql("/testdata/get_watchlist.sql")
+    public void getWatchlistByUsernameNoExists() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .get(Routes.WATCHLIST_PATH+"?username=aquiles").contentType(
+                        MediaType.APPLICATION_JSON
+                );
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+        Assertions.assertEquals(404,response.getStatus());
+        ErrorResponse error = objectMapper.readValue(response.getContentAsString(),ErrorResponse.class);
+        Assertions.assertEquals("User does not exists",error.getMessage());
+    }
+
+
+
 }
