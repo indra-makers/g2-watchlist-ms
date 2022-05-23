@@ -100,6 +100,9 @@ public class CoinWatchlistControllerTest {
         // ------------ las verificaciones--------------------
         Assertions.assertEquals(200, response.getStatus());
 
+        List<CoinWatchlist> watchlists = coinWatchlistRepository.findByUsernameAndSimboly(30, "BTC");
+        Assertions.assertEquals(0, watchlists.size());
+
     }
     @Test
     @Sql("/testdata/get_watchlistcoin.sql")
@@ -111,7 +114,7 @@ public class CoinWatchlistControllerTest {
         String textREsponse = response.getContentAsString();
         ErrorResponse error = objectMapper.readValue(textREsponse, ErrorResponse.class);
 
-        Assertions.assertEquals("404", error.getCode());
+        Assertions.assertEquals("NOT FOUND", error.getCode());
         Assertions.assertEquals("Watchlist with that id not exists", error.getMessage());
     }
 
@@ -125,7 +128,7 @@ public class CoinWatchlistControllerTest {
         String textREsponse = response.getContentAsString();
         ErrorResponse error = objectMapper.readValue(textREsponse, ErrorResponse.class);
 
-        Assertions.assertEquals("404", error.getCode());
+        Assertions.assertEquals("NOT FOUND", error.getCode());
         Assertions.assertEquals("Watchlist with that symbol coin not exists", error.getMessage());
     }
 

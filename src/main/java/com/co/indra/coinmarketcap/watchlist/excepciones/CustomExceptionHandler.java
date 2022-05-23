@@ -26,7 +26,7 @@ public class CustomExceptionHandler {
     @ResponseBody
     @ExceptionHandler(NotFoundException.class)
     public ErrorResponse handleNotFoundException(NotFoundException exception) {
-        return new ErrorResponse("404", exception.getMessage());
+        return new ErrorResponse("NOT FOUND", exception.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
