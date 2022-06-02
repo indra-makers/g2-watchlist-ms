@@ -69,7 +69,7 @@ public class WatchlistControllerTest {
     @Test
     public void createWatchlistWitchAlreadyNameExist() throws Exception {
         //----la preparacion de los datos de prueba-------
-        watchlistRepository.create(new Watchlist("abuitragogo", "name Watchlist test", "true"));
+        watchlistRepository.create(new Watchlist("abuitragogo", "name Watchlist test", "true"), "");
 
         //----la ejecucion de la prueba misma--------------
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders

@@ -6,6 +6,8 @@ import com.co.indra.coinmarketcap.watchlist.excepciones.NotFoundException;
 import com.co.indra.coinmarketcap.watchlist.models.Entities.Watchlist;
 import com.co.indra.coinmarketcap.watchlist.repositories.CoinWatchlistRepository;
 import com.co.indra.coinmarketcap.watchlist.repositories.WatchlistRepository;
+import com.co.indra.coinmarketcap.watchlist.usersMSClient.Users;
+import com.co.indra.coinmarketcap.watchlist.usersMSClient.UsersClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +22,27 @@ public class WatchlistService {
     @Autowired
     private CoinWatchlistRepository coinWatchlistRepository;
 
-    public void createWatchlist(Watchlist watchlist){
+    @Autowired
+    private UsersClient usersClient;
+
+    /*public void createWatchlist(Watchlist watchlist){
         if(watchlistRepository.findByUsernameAndName(watchlist.getUsername(), watchlist.getNameWatchlist()).size()==0){
             watchlistRepository.create(watchlist);
         }else{
             throw new BussinessException(ErrorCodes.WATCHLIST_WITH_NAME_EXISTS);
+        }
+    }*/
+
+    public void createWatchlist(String username, Watchlist watchlist) {
+        if (usersClient.findUserByUsername(username).getUsername().equals(username)) {
+            if(watchlistRepository.findByUsernameAndName(username, watchlist.getNameWatchlist()).size()==0){
+                watchlistRepository.create(watchlist, username);
+            }else{
+                throw new BussinessException(ErrorCodes.WATCHLIST_WITH_NAME_EXISTS);
+            }
+        }
+        else{
+            throw new NotFoundException(ErrorCodes.WATCHLIST_USER_DOESNOT_EXISTS.getMessage());
         }
     }
 
