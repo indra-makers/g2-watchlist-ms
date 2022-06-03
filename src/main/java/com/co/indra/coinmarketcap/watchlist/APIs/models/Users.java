@@ -1,6 +1,8 @@
-package com.co.indra.coinmarketcap.watchlist.usersMSClient;
+package com.co.indra.coinmarketcap.watchlist.APIs.models;
 
-public class Users {
+import java.io.Serializable;
+
+public class Users implements Serializable {
 
     private String username;
 

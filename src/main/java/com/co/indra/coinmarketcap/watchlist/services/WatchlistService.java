@@ -6,8 +6,7 @@ import com.co.indra.coinmarketcap.watchlist.excepciones.NotFoundException;
 import com.co.indra.coinmarketcap.watchlist.models.Entities.Watchlist;
 import com.co.indra.coinmarketcap.watchlist.repositories.CoinWatchlistRepository;
 import com.co.indra.coinmarketcap.watchlist.repositories.WatchlistRepository;
-import com.co.indra.coinmarketcap.watchlist.usersMSClient.Users;
-import com.co.indra.coinmarketcap.watchlist.usersMSClient.UsersClient;
+import com.co.indra.coinmarketcap.watchlist.APIs.clients.UsersApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ public class WatchlistService {
     private CoinWatchlistRepository coinWatchlistRepository;
 
     @Autowired
-    private UsersClient usersClient;
+    private UsersApiClient usersApiClient;
 
     /*public void createWatchlist(Watchlist watchlist){
         if(watchlistRepository.findByUsernameAndName(watchlist.getUsername(), watchlist.getNameWatchlist()).size()==0){
@@ -34,7 +33,7 @@ public class WatchlistService {
     }*/
 
     public void createWatchlist(String username, Watchlist watchlist) {
-        if (usersClient.findUserByUsername(username).getUsername().equals(username)) {
+        if (usersApiClient.findUserByUsername(username).getUsername().equals(username)) {
             if(watchlistRepository.findByUsernameAndName(username, watchlist.getNameWatchlist()).size()==0){
                 watchlistRepository.create(watchlist, username);
             }else{
