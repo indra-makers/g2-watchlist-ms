@@ -11,4 +11,6 @@ public class Routes {
     public static  final String COIN_WATCHLIST_PATH = "/coins";
 
     public static  final String COIN= "/d";
+
+    public static final String ID_USER_PATH="/users/{username}";
 }

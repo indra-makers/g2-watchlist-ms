@@ -1,11 +1,9 @@
-package com.co.indra.coinmarketcap.watchlist.testdata;
+package com.co.indra.coinmarketcap.watchlist.controllers;
 
 import com.co.indra.coinmarketcap.watchlist.Config.Routes;
 import com.co.indra.coinmarketcap.watchlist.models.Entities.CoinWatchlist;
-import com.co.indra.coinmarketcap.watchlist.models.Entities.Watchlist;
 import com.co.indra.coinmarketcap.watchlist.models.Response.ErrorResponse;
 import com.co.indra.coinmarketcap.watchlist.repositories.CoinWatchlistRepository;
-import com.co.indra.coinmarketcap.watchlist.repositories.WatchlistRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
