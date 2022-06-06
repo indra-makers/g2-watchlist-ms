@@ -32,10 +32,10 @@ public class WatchlistService {
         }
     }*/
 
-    public void createWatchlist(String username, Watchlist watchlist) {
-        if (usersApiClient.findUserByUsername(username).getUsername().equals(username)) {
-            if(watchlistRepository.findByUsernameAndName(username, watchlist.getNameWatchlist()).size()==0){
-                watchlistRepository.create(watchlist, username);
+    public void createWatchlist(Watchlist watchlist) {
+        if (usersApiClient.findUserByUsername(watchlist.getUsername()).getUsername().equals(watchlist.getUsername())){
+            if(watchlistRepository.findByUsernameAndName(watchlist.getUsername(), watchlist.getNameWatchlist()).size()==0){
+                watchlistRepository.create(watchlist);
             }else{
                 throw new BussinessException(ErrorCodes.WATCHLIST_WITH_NAME_EXISTS);
             }

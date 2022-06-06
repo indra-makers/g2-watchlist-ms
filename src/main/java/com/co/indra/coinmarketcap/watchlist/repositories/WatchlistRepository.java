@@ -30,9 +30,9 @@ public class WatchlistRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void create(Watchlist watchlist, String username){
+    public void create(Watchlist watchlist){
         jdbcTemplate.update("INSERT INTO tbl_watchlist(username, name_watchlist, visibility) values(?,?,?)",
-               username, watchlist.getNameWatchlist(), watchlist.isVisibility());
+               watchlist.getUsername(), watchlist.getNameWatchlist(), watchlist.isVisibility());
     }
 
     public List<Watchlist> findByUsernameAndName(String username, String name_watchlist) {

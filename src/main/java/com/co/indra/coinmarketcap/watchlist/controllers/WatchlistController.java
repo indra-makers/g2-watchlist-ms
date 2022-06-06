@@ -21,9 +21,9 @@ public class WatchlistController {
      * URL /watchlists
      * @param watchlist
      */
-    @PostMapping(Routes.ID_USER_PATH)
-    public void create(@PathVariable String username, @Valid @RequestBody Watchlist watchlist){
-        watchlistService.createWatchlist(username, watchlist);
+    @PostMapping()
+    public void create(@Valid @RequestBody Watchlist watchlist){
+        watchlistService.createWatchlist(watchlist);
     }
 
     /**

@@ -31,7 +31,7 @@ public class UsersApiClient {
                 Users.class);
 
         if (response.getStatusCode() != HttpStatus.OK) {
-            throw new BussinessException(ErrorCodes.WATCHLIST_USER_DOESNOT_EXISTS);
+            throw new NotFoundException(ErrorCodes.WATCHLIST_USER_DOESNOT_EXISTS.getMessage());
         }
 
         Users body = response.getBody();

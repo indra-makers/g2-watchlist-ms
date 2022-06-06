@@ -66,8 +66,9 @@ public class WatchlistControllerTest {
 
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .post(Routes.WATCHLIST_PATH+Routes.ID_USER_PATH, "Username")
+                .post(Routes.WATCHLIST_PATH)
                 .content("{\n" +
+                        "    \"username\": \"Username\",\n" +
                         "    \"nameWatchlist\": \"nameW\",\n" +
                         "    \"visibility\": \"true\"\n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
@@ -102,8 +103,9 @@ public class WatchlistControllerTest {
 
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .post(Routes.WATCHLIST_PATH+Routes.ID_USER_PATH, "nobody")
+                .post(Routes.WATCHLIST_PATH)
                 .content("{\n" +
+                        "    \"username\": \"nobody\",\n" +
                         "    \"nameWatchlist\": \"nameW\",\n" +
                         "    \"visibility\": \"true\"\n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
@@ -132,8 +134,9 @@ public class WatchlistControllerTest {
                 Mockito.<Class<Users>>any()
         )).thenReturn(entity);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .post(Routes.WATCHLIST_PATH+Routes.ID_USER_PATH, "Username")
+                .post(Routes.WATCHLIST_PATH)
                 .content("{\n" +
+                        "    \"username\": \"Username\",\n" +
                         "    \"nameWatchlist\": \"namwW\",\n" +
                         "    \"visibility\": \"true\"\n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
