@@ -24,7 +24,7 @@ public class UsersApiClient {
     @Value("${api.users.url}")
     private String apiUrl;
 
-    @Cacheable(value = "watchlistByUsername", key = "#username", unless = "#result == null")
+    @Cacheable(value = "watchlistByUsername", cacheManager = "expire30Mins", key = "#username", unless = "#result == null")
     public Users findUserByUsername(String username) {
         UriComponentsBuilder uri = UriComponentsBuilder
                 .fromUriString(apiUrl+username);
