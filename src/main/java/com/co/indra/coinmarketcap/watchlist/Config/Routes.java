@@ -12,5 +12,7 @@ public class Routes {
 
     public static  final String COIN= "/d";
 
-    public static final String ID_USER_PATH="/users/{username}";
+    public static final String USER="/users";
+    public static final String ID_USER="/{username}";
+    public static final String ALERTS="/alerts";
 }
