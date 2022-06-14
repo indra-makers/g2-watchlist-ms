@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -36,5 +37,9 @@ public class WatchlistController {
         return watchlistService.getWatchlistByUsername(username);
     }
 
+    @PostMapping(Routes.ID_SYMBOLCOIN_PATH)
+    public void sendNotification(@PathParam("id_symbolCoin") String idSymbolCoin, @RequestBody Long price){
+        watchlistService.sendNotification(idSymbolCoin, price);
+    }
 
 }

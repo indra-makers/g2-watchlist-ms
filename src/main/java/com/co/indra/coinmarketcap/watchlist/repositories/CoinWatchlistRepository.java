@@ -60,7 +60,11 @@ public class CoinWatchlistRepository {
                 "DELETE  FROM tbl_coinwatchlist WHERE id_symbolcoin=? AND id_watchlist=?",
                 symbolCoin, idWatchlist );
     }
-
-
+    public List<CoinWatchlist> findCoinsInWatchlistsByIdSymbolCoin(String idSymbolCoin) {
+        return jdbcTemplate.query(
+                "SELECT id, id_symbolCoin, id_watchlist FROM tbl_coinWatchlist WHERE id_symbolCoin=?",
+                new CoinWatchlistRowMapper(),
+                idSymbolCoin);
+    }
 
 }
