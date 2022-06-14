@@ -41,7 +41,6 @@ public class WatchlistController {
 
     @PostMapping(Routes.ID_SYMBOLCOIN_PATH)
     public void sendNotification(@PathVariable("idSymbolCoin") String idSymbolCoin, @RequestBody Price price){
-        System.out.println(price.getPrice());
         watchlistService.sendNotification(idSymbolCoin, price.getPrice());
 
     }

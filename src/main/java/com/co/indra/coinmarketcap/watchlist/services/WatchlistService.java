@@ -67,9 +67,7 @@ public class WatchlistService {
         List<CoinWatchlist> listCoinWatchlist = coinWatchlistRepository.findCoinsInWatchlistsByIdSymbolCoin(idSymbolCoin);
         List<Alerts> listAlerts = userRepository.findCoinWithAlertByIdSymbolCoin(idSymbolCoin, "true");
         System.out.println(listAlerts);
-        if (listCoinWatchlist.isEmpty()){
-            throw new NotFoundException(ErrorCodes.COIN_DOESNOT_EXIST.getMessage());
-        }
+
         if (listAlerts.isEmpty()){
             throw new NotFoundException(ErrorCodes.COIN_DOESNOT_ALERT.getMessage());
         }
@@ -83,7 +81,6 @@ public class WatchlistService {
                 System.out.println("Notificacion enviada a " +listAlerts.get(c).getUsername());
             }
         }
-
 
 
     }
