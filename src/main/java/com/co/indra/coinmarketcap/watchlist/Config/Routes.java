@@ -6,7 +6,7 @@ public class Routes {
 
     public static final String ID_WATCHLIST_PATH = "/{id_watchlist}";
 
-    public static final String ID_SYMBOLCOIN_PATH = "/coins/{id_symbolCoin}";
+    public static final String ID_SYMBOLCOIN_PATH = "/coins/{idSymbolCoin}";
 
     public static  final String COIN_WATCHLIST_PATH = "/coins";
 

@@ -35,7 +35,7 @@ public class UserRepository {
 
     public List<Alerts> findCoinWithAlertByIdSymbolCoin(String idSymbolCoin, String notified) {
         return jdbcTemplate.query(
-                "SELECT id_alert, id_symbol_coin, price, username, notified FROM tbl_alerts WHERE id_symbolCoin=? AND notified=?",
+                "SELECT id_alert, id_symbol_coin, price, username, notified FROM tbl_alerts WHERE id_symbol_coin=? AND notified=?",
                 new AlertRowMapper(),
                 idSymbolCoin, notified);
     }

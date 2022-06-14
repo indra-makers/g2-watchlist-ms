@@ -2,6 +2,7 @@ package com.co.indra.coinmarketcap.watchlist.controllers;
 
 import com.co.indra.coinmarketcap.watchlist.Config.Routes;
 import com.co.indra.coinmarketcap.watchlist.models.Entities.Watchlist;
+import com.co.indra.coinmarketcap.watchlist.models.Request.Price;
 import com.co.indra.coinmarketcap.watchlist.services.WatchlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class WatchlistController {
 
     @Autowired
     private WatchlistService watchlistService;
+    private long price;
 
 
     /**
@@ -38,8 +40,10 @@ public class WatchlistController {
     }
 
     @PostMapping(Routes.ID_SYMBOLCOIN_PATH)
-    public void sendNotification(@PathParam("id_symbolCoin") String idSymbolCoin, @RequestBody Long price){
-        watchlistService.sendNotification(idSymbolCoin, price);
+    public void sendNotification(@PathVariable("idSymbolCoin") String idSymbolCoin, @RequestBody Price price){
+        System.out.println(price.getPrice());
+        watchlistService.sendNotification(idSymbolCoin, price.getPrice());
+
     }
 
 }
