@@ -61,6 +61,11 @@ public class CoinWatchlistRepository {
                 symbolCoin, idWatchlist );
     }
 
-
+    public List<CoinWatchlist> findCoinWatchlistsByIdSymbolCoin(String idSymbolCoin) {
+        return jdbcTemplate.query(
+                "SELECT id, id_symbolCoin, id_watchlist FROM tbl_coinwatchlist WHERE id_symbolcoin=?",
+                new CoinWatchlistRowMapper(),
+                idSymbolCoin);
+    }
 
 }
