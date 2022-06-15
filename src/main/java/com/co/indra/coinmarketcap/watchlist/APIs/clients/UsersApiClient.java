@@ -39,4 +39,11 @@ public class UsersApiClient {
         Users body = response.getBody();
         return body;
     }
+
+    public Users getUserFromUsersmsByUsername(String username) {
+        UriComponentsBuilder uri = UriComponentsBuilder.fromUriString(apiUrl).path(username);
+        ResponseEntity<Users> responseUser = restTemplate.getForEntity(uri.toUriString(), Users.class);
+        Users body = responseUser.getBody();
+        return new Users(body.getUsername(), body.getDisplayName(), body.getIdCategoryUser(), body.getMail());
+    }
 }

@@ -48,4 +48,6 @@ public class WatchlistRepository {
                 new WatchlistRowMapper(),
                 username);
     }
+
+
 }
