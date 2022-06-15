@@ -72,9 +72,11 @@ public class WatchlistService {
         if (listAlerts.isEmpty()) {
             throw new NotFoundException(ErrorCodes.COIN_DOESNOT_ALERT.getMessage());
         }
+        System.out.println(listAlerts.size());
         for (int c = 0; c < listAlerts.size(); c++) {
-            double min = listAlerts.get(c).getPrice() - (listAlerts.get(c).getPrice() + 0.02);
-            double max = listAlerts.get(c).getPrice() + (listAlerts.get(c).getPrice() + 0.02);
+            double min = listAlerts.get(c).getPrice() - (listAlerts.get(c).getPrice() * 0.002);
+            double max = listAlerts.get(c).getPrice() + (listAlerts.get(c).getPrice() * 0.002);
+            System.out.println(min + max);
             if (price> max || price <min) {
                 Notification notification = new Notification(listAlerts.get(c).getUsername(), "SMS", "Alerta", "El precio esta +/- 2%");
                 alertsProducer.sendNotification(notification);
