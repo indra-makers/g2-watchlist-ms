@@ -66,14 +66,12 @@ public class WatchlistService {
     public void sendNotification(String idSymbolCoin, long price){
         List<CoinWatchlist> listCoinWatchlist = coinWatchlistRepository.findCoinsInWatchlistsByIdSymbolCoin(idSymbolCoin);
         List<Alerts> listAlerts = userRepository.findCoinWithAlertByIdSymbolCoin(idSymbolCoin, "true");
-        System.out.println(listAlerts);
-
         if (listAlerts.isEmpty()){
             throw new NotFoundException(ErrorCodes.COIN_DOESNOT_ALERT.getMessage());
         }
         for (int c=0; c<listAlerts.size(); c++){
-            double min =listAlerts.get(c).getPrice()-(listAlerts.get(c).getPrice()+0.02);
-            double max =listAlerts.get(c).getPrice()+(listAlerts.get(c).getPrice()+0.02);
+            double min =listAlerts.get(c).getPrice()-(listAlerts.get(c).getPrice()*0.02);
+            double max =listAlerts.get(c).getPrice()+(listAlerts.get(c).getPrice()*0.02);
             if (price>max || price<min){
                 //enviar notificacion
                 Notification notification = new Notification(listAlerts.get(c).getUsername(), "SMS", "Alerta", "MarketCap que el precio sta en una aletar del 2%");
@@ -81,8 +79,5 @@ public class WatchlistService {
                 System.out.println("Notificacion enviada a " +listAlerts.get(c).getUsername());
             }
         }
-
-
     }
-
 }
